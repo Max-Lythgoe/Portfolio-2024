@@ -6,10 +6,76 @@
   --style-sec: #0784b5;
   --style-tri: #414c50;
   --style-quad: #414c50;
-  --style-quin: #192428;
+  --style-quin: #17181d;
 
   --title-font: "Work Sans", sans-serif;
   --body-font: "Oxygen", sans-serif;
 
   --radius: 20px;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* grid bg */
+body {
+  margin: 0;
+  min-height: 100%;
+}
+h1 {
+  color: white;
+  font-size: 15vw;
+  text-align: center;
+  margin-top: 15vh;
+}
+.bg-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: #222326;
+}
+.bg-tiles {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-image: url(https://uploads-ssl.webflow.com/63281d362a9501fa6e9f6aae/632835c8722a32c6adef674b_bg-tile.svg);
+  background-image: url(/src/assets/svg/tile-bg.svg);
+  background-position: 50% 0;
+  background-size: 142px 71px;
+   /* background-size: 71px 35.5px;  smaller bg grid */ 
+  background-repeat: repeat;
+}
+.bg-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0;
+  will-change: background, opacity;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  transition-property: opacity;
+  background-image: radial-gradient(355px at var(--cursor-x) var(--cursor-y), rgba(255, 254, 241, 0.65), transparent 40%);
+  background-size: auto;
+  background-origin: padding-box;
+  z-index: 1;
+}
+body:hover .bg-wrap::before {
+  opacity: 1;
+}
+
