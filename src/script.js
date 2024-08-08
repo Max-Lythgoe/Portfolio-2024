@@ -8,6 +8,37 @@ const cursorOffSet = function (e) {
 };
 document.querySelector("body").addEventListener("mousemove", cursorOffSet);
 
+// menu toggle
+document.getElementById("menu-toggle").addEventListener("click", function(){
+  var menuToggle = document.getElementById("menu-toggle");
+  var header = document.getElementsByClassName("header")[0];
+  menuToggle.classList.toggle("menu-open");
+  header.classList.toggle("menu-open");
+});
+
+// menu toggle appear on mobile
+if (window.innerWidth <= 768) {
+  var menuToggle = document.getElementById("menu-toggle");
+  menuToggle.classList.add("active");
+}
+
+
+// scroll popup menu toggle
+window.onscroll = function() {
+  var navToggle = document.getElementById("menu-toggle");
+  if (window.innerWidth > 960) {
+    if (window.scrollY > 200) {
+      navToggle.classList.add('active');
+    } else {
+      navToggle.classList.remove('active');
+    }
+  } else {
+    navToggle.classList.remove('active'); 
+  }
+};
+
+
+
 
 // pac man mode
 // document.getElementById("pac-man").addEventListener("click", function(){
