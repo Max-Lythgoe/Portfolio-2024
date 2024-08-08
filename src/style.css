@@ -1,0 +1,209 @@
+/* Page styles */
+
+:root {
+  --color-background: rgb(15, 15, 15);
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-color: var(--color-background);
+  min-height: 100%;
+}
+
+/* Required styles */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  color: #fff;
+}
+
+span, p, li {
+  font-weight: 500;
+  font-family: "Oxygen", sans-serif;
+}
+
+.video,
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.wrapper {
+  position: relative;
+/*   box-shadow: inset 0 0 4rem 4.5rem var(--color-background); */
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255, .4);
+  border-bottom: 1px solid rgba(255,255,255, .4)
+}
+
+h1 {
+  margin-top: 0px;
+  font-family: "Work Sans";
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+}
+.video {
+  padding: 0px;
+  position: relative;
+  border-radius: 20px;
+}
+
+.vid-info {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(0,0,0,.3)
+}
+
+.skills {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+}
+
+.skills span {
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(104, 104, 104, .7); 
+  transition: .4s;
+}
+
+.skills span:hover {
+  filter: brightness(120%);
+}
+
+
+
+
+
+
+
+/* pac man */
+
+.pac-man-mode * {
+  font-family: "Pixelify Sans";
+}
+
+.pac-man-mode i {
+  font-family: "Font Awesome 6 Free";
+}
+
+#bottom-bar {
+  display: none;
+}
+
+#bottom-bar img {
+  max-width: 300px;
+}
+
+.pac-man-mode #bottom-bar {
+  display: flex;
+  padding: 30px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  font-size: 30px;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  background: #060606;
+}
+
+.pac-man-mode .wrapper {
+  border: 3px solid #0e0fd4;
+  outline: 3px solid #0e0fd4;
+  outline-offset: 5px;
+}
+
+.pac-man-mode {
+  background-color: black;
+  padding-bottom: 300px;
+}
+
+.pac-man-mode .vid-info {
+  border: 3px solid #0e0fd4;
+}
+
+#pac-man {
+  background: black;
+  color: white;
+  font-size: 50px;
+  border-radius: 100%;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px auto;
+  border: 3px solid #fff;
+}
+
+#pac-man:active {
+  transform: scale(.9);
+  border: 3px solid #0e0fd4;
+}
+
+.pac-man-mode #pac-man {
+  border: 3px solid #0e0fd4;
+}
+
+.pac-man-mode canvas {
+  opacity: .1;
+}
+
+.pac-man-mode .skills span {
+  border: 3px solid #0e0fd4;
+  background: #000;
+  transition: none;
+}
+
+.pac-man-mode video {
+  border: 3px solid #0e0fd4;
+}
+
+.dots {
+  margin: 10px 0px;
+}
+
+.pac-man-mode .dots {
+  display: block;
+  width: 100%;
+  height: 30px;
+  background-image: radial-gradient(#fbbd97 20%, transparent 0);
+  background-size: 35px 35px;
+  margin: 20px 0px;
+}
+
+.pac-ghost {
+  display: none;
+}
+
+.pac-man-mode .pac-ghost {
+  display: block;
+  font-size: 30px;
+  color: #fd0200!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas {
+    display: none !important;
+  }
+}
