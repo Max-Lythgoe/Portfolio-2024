@@ -1,7 +1,33 @@
+//Cursor glow effect
+const cursorOffSet = function (e) {
+  const rect = this.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  this.style.setProperty("--cursor-x", x + "px");
+  this.style.setProperty("--cursor-y", y + "px");
+};
+document.querySelector(".home-hero").addEventListener("mousemove", cursorOffSet);
+document.querySelector(".home-hero-img-wrap").addEventListener("mousemove", cursorOffSet);
+document.querySelectorAll().forEach((grid) => {
+  grid.addEventListener("mousemove", function (e) {
+    this.querySelectorAll().forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--cursor-x", x + "px");
+      card.style.setProperty("--cursor-y", y + "px");
+    });
+  });
+});
+
+
+// pac man mode
 document.getElementById("pac-man").addEventListener("click", function(){
   document.body.classList.toggle("pac-man-mode");
 });
 
+
+// video blur overlay
 class VideoWithBackground {
   video;
   canvas;
