@@ -8,34 +8,51 @@ const cursorOffSet = function (e) {
 };
 document.querySelector("body").addEventListener("mousemove", cursorOffSet);
 
-// menu toggle
-document.getElementById("menu-toggle").addEventListener("click", function(){
-  var menuToggle = document.getElementById("menu-toggle");
-  var header = document.getElementsByClassName("header")[0];
-  menuToggle.classList.toggle("menu-open");
-  header.classList.toggle("menu-open");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const header = document.querySelector(".header-mobile");
+  const navLinks = document.querySelectorAll(".header-mobile a");
+
+  // Menu toggle click event
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("menu-open");
+    header.classList.toggle("menu-open");
+  });
+
+  // Close menu on link click
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      header.classList.remove("menu-open");
+      menuToggle.classList.remove("menu-open");
+    });
+  });
+
+  // Check window size and toggle menu visibility
+  const checkWindowSize = () => {
+    if (window.innerWidth <= 768) {
+      menuToggle.classList.add("active");
+    } else {
+      menuToggle.classList.remove("active");
+    }
+  };
+
+  // Initial check and event listeners
+  checkWindowSize();
+  window.addEventListener("resize", checkWindowSize);
+
+  // Scroll event for menu toggle
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth > 768) {
+      if (window.scrollY > 200) {
+        menuToggle.classList.add("active");
+      } else {
+        menuToggle.classList.remove("active");
+      }
+    }
+  });
 });
 
-// menu toggle appear on mobile
-if (window.innerWidth <= 768) {
-  var menuToggle = document.getElementById("menu-toggle");
-  menuToggle.classList.add("active");
-}
 
-
-// scroll popup menu toggle
-window.onscroll = function() {
-  var navToggle = document.getElementById("menu-toggle");
-  if (window.innerWidth > 960) {
-    if (window.scrollY > 200) {
-      navToggle.classList.add('active');
-    } else {
-      navToggle.classList.remove('active');
-    }
-  } else {
-    navToggle.classList.remove('active'); 
-  }
-};
 
 
 
@@ -45,75 +62,79 @@ window.onscroll = function() {
 //   document.body.classList.toggle("pac-man-mode");
 // });
 
-
 // video blur overlay
 class VideoWithBackground {
-  video;
-  canvas;
-  step;
-  ctx;
-  posterImage;
+  constructor(videoIds, canvasIds) {
+    this.videos = videoIds.map(id => document.getElementById(id));
+    this.canvases = canvasIds.map(id => document.getElementById(id));
+    this.steps = [];
+    this.ctxs = [];
+    this.posterImages = [];
 
-  constructor(videoId, canvasId) {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (!mediaQuery.matches) {
-      this.video = document.getElementById(videoId);
-      this.canvas = document.getElementById(canvasId);
-
       window.addEventListener("load", this.init, false);
       window.addEventListener("unload", this.cleanup, false);
     }
   }
 
-  draw = () => {
-    this.ctx.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
+  draw = (index) => {
+    this.ctxs[index].drawImage(this.videos[index], 0, 0, this.canvases[index].width, this.canvases[index].height);
   };
 
-  drawLoop = () => {
-    this.draw();
-    this.step = window.requestAnimationFrame(this.drawLoop);
+  drawLoop = (index) => {
+    this.draw(index);
+    this.steps[index] = window.requestAnimationFrame(() => this.drawLoop(index));
   };
 
-  drawPause = () => {
-    window.cancelAnimationFrame(this.step);
-    this.step = undefined;
+  drawPause = (index) => {
+    window.cancelAnimationFrame(this.steps[index]);
+    this.steps[index] = undefined;
   };
 
-  drawPoster = () => {
-    if (this.posterImage.complete) {
-      this.ctx.drawImage(this.posterImage, 0, 0, this.canvas.width, this.canvas.height);
+  drawPoster = (index) => {
+    if (this.posterImages[index].complete) {
+      this.ctxs[index].drawImage(this.posterImages[index], 0, 0, this.canvases[index].width, this.canvases[index].height);
     } else {
-      this.posterImage.onload = () => {
-        this.ctx.drawImage(this.posterImage, 0, 0, this.canvas.width, this.canvas.height);
+      this.posterImages[index].onload = () => {
+        this.ctxs[index].drawImage(this.posterImages[index], 0, 0, this.canvases[index].width, this.canvases[index].height);
       };
     }
   };
 
   init = () => {
-    this.ctx = this.canvas.getContext("2d");
-    this.ctx.filter = "blur(1px)";
+    this.videos.forEach((video, index) => {
+      this.ctxs[index] = this.canvases[index].getContext("2d");
+      this.ctxs[index].filter = "blur(1px)";
 
-    this.posterImage = new Image();
-    this.posterImage.src = this.video.getAttribute("poster");
+      this.posterImages[index] = new Image();
+      this.posterImages[index].src = video.getAttribute("poster");
 
-    this.video.addEventListener("loadeddata", this.draw, false);
-    this.video.addEventListener("seeked", this.draw, false);
-    this.video.addEventListener("play", this.drawLoop, false);
-    this.video.addEventListener("pause", this.drawPause, false);
-    this.video.addEventListener("ended", this.drawPause, false);
+      video.addEventListener("loadeddata", () => this.draw(index), false);
+      video.addEventListener("seeked", () => this.draw(index), false);
+      video.addEventListener("play", () => this.drawLoop(index), false);
+      video.addEventListener("pause", () => this.drawPause(index), false);
+      video.addEventListener("ended", () => this.drawPause(index), false);
 
-    // Draw the poster image if the video has not started playing yet
-    this.drawPoster();
+      this.drawPoster(index);
+    });
   };
 
   cleanup = () => {
-    this.video.removeEventListener("loadeddata", this.draw);
-    this.video.removeEventListener("seeked", this.draw);
-    this.video.removeEventListener("play", this.drawLoop);
-    this.video.removeEventListener("pause", this.drawPause);
-    this.video.removeEventListener("ended", this.drawPause);
+    this.videos.forEach((video, index) => {
+      video.removeEventListener("loadeddata", () => this.draw(index));
+      video.removeEventListener("seeked", () => this.draw(index));
+      video.removeEventListener("play", () => this.drawLoop(index));
+      video.removeEventListener("pause", () => this.drawPause(index));
+      video.removeEventListener("ended", () => this.drawPause(index));
+    });
   };
 }
 
-const el = new VideoWithBackground("js-video", "js-canvas");
+const videoIds = ["js-video-1", "js-video-2"];
+const canvasIds = ["js-canvas-1", "js-canvas-2"];
+const el = new VideoWithBackground(videoIds, canvasIds);
+
+
+
