@@ -66,6 +66,7 @@ body {
   margin: 0;
   min-height: 100%;
   position: relative;
+  background: #17181d;
 }
 
 .bg-wrap {
@@ -136,6 +137,7 @@ body:hover .bg-wrap::before {
   justify-content: center;
   align-items: center;
   transition: .4s;
+  animation: popIn .5s ease-out;
 }
 
 .header-logo span {
@@ -162,6 +164,31 @@ body:hover .bg-wrap::before {
   color: #fff;
   font-size: 30px;
   transition: .4s;
+  animation: fadeUp .4s;
+}
+
+.nav-link:nth-of-type(2) {
+  animation: fadeUp .7s;
+}
+
+.nav-link:nth-of-type(3) {
+  animation: fadeUp 1s;
+}
+
+.nav-link:nth-of-type(4) {
+  animation: fadeUp 1.3s;
+}
+
+@keyframes fadeUp {
+  0% {
+    transform: translatey(30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translatey(0px);
+    opacity: 1;
+  }
 }
 
 .nav-link:hover {
@@ -292,10 +319,23 @@ body:hover .bg-wrap::before {
   border: 2px solid rgba(255,255,255, .4);
   border-bottom: 1px solid rgba(255,255,255, .4);
   transition: .4s;
+  animation: popIn .7s ease-out;
 }
 
 .intro-box:hover {
   filter: brightness(110%);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(.5);
+    opacity: .3;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .intro-image {
@@ -453,6 +493,40 @@ body:hover .bg-wrap::before {
   filter: brightness(120%);
 }
 
+.vid-info ul {
+  padding-left: 20px;
+}
+
+.vid-info li {
+  margin-bottom: 10px;
+}
+
+.project-link {
+  font-size: 25px;
+  color: var(--style-main);
+  background: white;
+  border: 2px solid #fff;
+  padding: 5px 20px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-family: var(--title-font);
+  font-weight: bold;
+  transition: .3s!important;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 40px);
+  text-align: center;
+}
+
+.project-link i {
+  margin-top: 10px;
+}
+
+.project-link:hover {
+  color: var(--style-main);
+  transform: translate(-50%, 0px);
+}
+
 
 /* skills */
 
@@ -574,6 +648,7 @@ td:hover {
 }
 
 @media(max-width: 768px) {
+  
   p, li, span {
     font-size: 16px;
   }
@@ -605,10 +680,6 @@ td:hover {
 
   /* .intro */
 
-  #intro.pad {
-    padding-top: 0px;
-  }
-
   .intro-image {
     aspect-ratio: 4 / 3;
   }
@@ -635,6 +706,10 @@ td:hover {
 
   .project, .vid-info, .intro-box {
     padding: 15px;
+  }
+
+  .project {
+    padding-bottom: 30px;
   }
 
   .project-title {
