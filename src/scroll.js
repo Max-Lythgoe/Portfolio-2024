@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.utils.toArray('.float').forEach(element => {
   gsap.to(element, {
-    y: 40,
+    y: 30,
     scrollTrigger: {
       trigger: element,
       start: "top 80%", 
@@ -25,7 +25,39 @@ gsap.utils.toArray('.float').forEach(element => {
       scrub: true
     }
   });
+
 });
+
+
+gsap.utils.toArray('.fade').forEach(element => {
+  gsap.to(element, {
+    opacity: 0.3,
+    scrollTrigger: {
+      trigger: element,
+      start: "top 0%", 
+      end: "top -60%",   
+      scrub: true
+    }
+  });
+
+});
+
+
+
+gsap.to('.about-flex', {
+  opacity: 0.3,
+  scrollTrigger: {
+    trigger: ".contact-flex",
+    start: "top center", 
+    end: "bottom bottom",
+    scrub: true,
+    markers: true
+  }
+});
+
+
+
+
 
 gsap.utils.toArray('.project').forEach(project => {
   gsap.fromTo(project, 

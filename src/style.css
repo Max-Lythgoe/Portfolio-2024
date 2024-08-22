@@ -627,7 +627,9 @@ body:hover .bg-wrap::before {
 }
 
 
-
+.spacer {
+  height: 200vh;
+}
 
 /* media queries */
 
