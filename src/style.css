@@ -389,7 +389,6 @@ body:hover .bg-wrap::before {
 
 .project {
   position: relative;
-  max-width: 1200px;
   margin: 10px auto;
   padding: 30px;
   border-radius: var(--radius);
@@ -408,6 +407,7 @@ body:hover .bg-wrap::before {
   width: 100%;
   height: 100%;
   opacity: 0.6;
+  pointer-events: none;
 }
 .video {
   padding: 0px;
@@ -430,6 +430,7 @@ body:hover .bg-wrap::before {
   display: flex;
   overflow-x: auto;
   gap: 20px;
+  mask-image: linear-gradient(90deg, #000 60%, transparent);
   -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
   padding-right: 100px;
 }
@@ -449,6 +450,87 @@ body:hover .bg-wrap::before {
 
 .skills span:hover {
   filter: brightness(120%);
+}
+
+
+/* skills */
+
+.container {
+  position: relative;
+  margin: 10px auto;
+  padding: 30px;
+  border-radius: var(--radius);
+      background: var(--style-quad-trans);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 2px solid rgba(255,255,255, .4);
+  border-bottom: 1px solid rgba(255,255,255, .4);
+}
+
+#skills .container {
+  margin-top: 200px;
+}
+
+#contribution-table {
+  margin-top: -200px;
+  margin-inline: auto;
+  border: 2px solid rgba(255,255,255, .4);
+  border-bottom: 1px solid rgba(255,255,255, .4);
+}
+
+table {
+  aspect-ratio: 5 / 3;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  background: black;
+  padding: 20px;
+  border-radius: calc(var(--radius) / 2)
+}
+
+td {
+  height: 30px; 
+  width: 30px; 
+  border-radius: 4px;
+  transition: 1s;
+  opacity: .7;
+}
+
+td:hover {
+  filter: brightness(120%);
+  box-shadow: 0 0 10px rgba(255,255,255,.5), 0 0 60px rgba(255,255,255,.5);
+  transition: .2s;
+  opacity: 1;
+}
+
+
+.color-0 { background-color: rgba(22, 27, 34, 1); }
+.color-1 { background-color: rgba(14, 68, 41, 1) }
+.color-2 { background-color: rgba(0, 109, 50, 1) }
+.color-3 { background-color: rgaba(38, 166, 65, 1) }
+.color-4 { background-color: rgba(57, 211, 83, 1); }
+
+.skill-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 40px;
+}
+
+.skill-item {
+  text-align: center;
+}
+
+.skill-item i {
+  color: #fff;
+  font-size: 80px;
+  height: 125px;
+  width: 125px;
+  border-radius: 100%;
+  background: rgba(0,0,0,.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
 }
 
 
