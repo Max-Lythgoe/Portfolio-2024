@@ -43,7 +43,7 @@ gsap.utils.toArray('.project').forEach(project => {
   );
 });
 
-document.querySelectorAll('.nav-link').forEach(anchor => {
+document.querySelectorAll('.nav-link, .header-logo').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
     const targetId = this.getAttribute('href');
@@ -51,3 +51,4 @@ document.querySelectorAll('.nav-link').forEach(anchor => {
     lenis.scrollTo(targetElement);
   });
 });
+
