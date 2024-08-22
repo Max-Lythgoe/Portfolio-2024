@@ -44,16 +44,20 @@ gsap.utils.toArray('.fade').forEach(element => {
 
 
 
-gsap.to('.about-flex', {
-  opacity: 0.3,
-  scrollTrigger: {
-    trigger: ".contact-flex",
-    start: "top center", 
-    end: "bottom bottom",
-    scrub: true,
-    markers: true
+gsap.fromTo('.about-flex', 
+  { opacity: 1 }, 
+  { 
+    opacity: 0.3,
+    scrollTrigger: {
+      trigger: ".contact-flex",
+      start: "center center", 
+      end: "top 20%",
+      scrub: true
+    }
   }
-});
+);
+
+
 
 
 
