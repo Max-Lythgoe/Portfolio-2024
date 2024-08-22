@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.utils.toArray('.float').forEach(element => {
   gsap.to(element, {
-    y: 30,
+    y: 40,
     scrollTrigger: {
       trigger: element,
       start: "top 80%", 

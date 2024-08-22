@@ -320,7 +320,7 @@ body:hover .bg-wrap::before {
   border: 2px solid rgba(255,255,255, .4);
   border-bottom: 1px solid rgba(255,255,255, .4);
   transition: .4s;
-  animation: popIn .7s ease-out;
+  /* animation: popIn .7s ease-out; */
 }
 
 .intro-box:hover {
@@ -738,6 +738,15 @@ body:hover .bg-wrap::before {
 }
 
 @media(max-width: 768px) {
+
+  .bg-wrap::before {
+    position: fixed;
+    background-image: radial-gradient(350px at 50%, rgba(255, 254, 241,1), transparent 50%);
+  }
+
+  .bg-tiles {
+   background-size: 71px 35.5px;
+}
   
   p, li, span {
     font-size: 16px;
