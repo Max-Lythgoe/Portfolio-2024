@@ -15,6 +15,18 @@ gsap.ticker.lagSmoothing(0);
 
 gsap.registerPlugin(ScrollTrigger);
 
+gsap.utils.toArray('.float').forEach(element => {
+  gsap.to(element, {
+    y: 40,
+    scrollTrigger: {
+      trigger: element,
+      start: "top 80%", 
+      end: "top 20%",
+      scrub: true
+    }
+  });
+});
+
 gsap.utils.toArray('.project').forEach(project => {
   gsap.fromTo(project, 
     { scale: 0.8, opacity: 0.7 }, 
@@ -30,9 +42,9 @@ gsap.utils.toArray('.project').forEach(project => {
   );
 
   gsap.fromTo(project, 
-    { scale: 1, opacity: 1 }, 
+    { opacity: 1 }, 
     { 
-      scale: 0.8, opacity: 0.7,
+      opacity: 0.3,
       scrollTrigger: {
         trigger: project,
         start: "top 0%",

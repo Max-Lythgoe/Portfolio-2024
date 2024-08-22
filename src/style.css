@@ -28,9 +28,10 @@
   box-sizing: border-box;
 }
 
-p, li {
+p, li, span {
   color: #fff;
   font-family: var(--body-font);
+  font-size: 20px;
 }
 
 a {
@@ -181,7 +182,7 @@ body:hover .bg-wrap::before {
     border-radius: 20px;
     border: 2px solid rgba(255, 255, 255, .4);
     border-bottom: 1px solid rgba(255, 255, 255, .4);
-    transition: .4s ease-in;
+    transition: .3s ease-in;
     transform: translatex(120%);
     z-index: 99999;
   }
@@ -254,7 +255,7 @@ body:hover .bg-wrap::before {
   position: absolute;
   left: 50%;
   top: 50%;
-  transition: .4s ease-in;
+  transition: .2s ease-in;
 }
 
 #menu-toggle .fa-ellipsis-vertical {
@@ -460,16 +461,13 @@ body:hover .bg-wrap::before {
   margin: 10px auto;
   padding: 30px;
   border-radius: var(--radius);
-      background: var(--style-quad-trans);
+  background: var(--style-quad-trans);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border: 2px solid rgba(255,255,255, .4);
   border-bottom: 1px solid rgba(255,255,255, .4);
 }
 
-#skills .container {
-  margin-top: 200px;
-}
 
 #contribution-table {
   margin-top: -200px;
@@ -513,7 +511,11 @@ td:hover {
 .skill-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 40px;
+  gap: 30px;
+}
+
+.skill-title {
+  margin-bottom: 0px;
 }
 
 .skill-item {
@@ -526,11 +528,18 @@ td:hover {
   height: 125px;
   width: 125px;
   border-radius: 100%;
-  background: rgba(0,0,0,.7);
+  background: rgba(0,0,0,.5);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-inline: auto;
+  outline: 2px solid #fff;
+  outline-offset: 7px;
+  transition: .5s;
+}
+
+.skill-item i:hover {
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px var(--style-main), 0 0 90px var(--style-main);
 }
 
 
@@ -546,6 +555,10 @@ td:hover {
   .wrap {
     max-width: 1200px;
   }
+
+  p, li, span {
+    font-size: 18px;
+  }
 }
 
 @media(max-width: 1400px) {
@@ -554,9 +567,19 @@ td:hover {
   }
 }
 
+@media(max-width: 1024px) {
+  .skill-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media(max-width: 768px) {
+  p, li, span {
+    font-size: 16px;
+  }
+  
   .pad {
-    padding: 50px 0px;
+    padding: 40px 0px;
   }
   
   .header .nav-primary {
@@ -582,8 +605,12 @@ td:hover {
 
   /* .intro */
 
+  #intro.pad {
+    padding-top: 0px;
+  }
+
   .intro-image {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
 
   .intro-titles {
@@ -612,6 +639,19 @@ td:hover {
 
   .project-title {
     font-size: 20px;
+  }
+
+  /* skills */
+
+  .skill-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .skill-item i {
+    font-size: 50px;
+    height: 70px;
+    width: 70px;
   }
   
 }
