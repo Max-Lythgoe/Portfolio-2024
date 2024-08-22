@@ -107,6 +107,7 @@ class VideoWithBackground {
     this.videos.forEach((video, index) => {
       this.ctxs[index] = this.canvases[index].getContext("2d");
       this.ctxs[index].filter = "blur(1px)";
+      this.ctxs[index].webkitFilter = "blur(1px)";
 
       this.posterImages[index] = new Image();
       this.posterImages[index].src = video.getAttribute("poster");
