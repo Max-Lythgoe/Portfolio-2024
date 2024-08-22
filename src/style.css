@@ -228,6 +228,7 @@ body:hover .bg-wrap::before {
   backdrop-filter: blur(2px);
   color: transparent;
   outline: 2px solid #fff;
+  background: rgba(0,0,0,.5);
   outline-offset: 7px;
   border-radius: 100%;
   transition: .4s;
@@ -386,10 +387,10 @@ body:hover .bg-wrap::before {
   margin: 0;
 }
 
-.wrapper {
+.project {
   position: relative;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 30px;
   border-radius: var(--radius);
   overflow: hidden;
@@ -421,10 +422,20 @@ body:hover .bg-wrap::before {
   background: rgba(0,0,0,.3)
 }
 
+.project-title {
+  font-size: 25px;
+}
+
 .skills {
   display: flex;
   overflow-x: auto;
   gap: 20px;
+  -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+  padding-right: 100px;
+}
+
+.skills::-webkit-scrollbar {
+  display: none;
 }
 
 .skills span {
@@ -439,7 +450,6 @@ body:hover .bg-wrap::before {
 .skills span:hover {
   filter: brightness(120%);
 }
-
 
 
 
@@ -487,5 +497,39 @@ body:hover .bg-wrap::before {
   font-family: var(--title-font);
   font-weight: bold;
 }
+
+  /* .intro */
+
+  .intro-image {
+    aspect-ratio: 1 / 1;
+  }
+
+  .intro-titles {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .intro-title .tooltip, .intro-subtitle .tooltip {
+    display: none;
+  }
+
+  .intro-title {
+    font-size: 35px;
+  }
+
+  .intro-subtitle {
+    font-size: 25px;
+  }
+
+  /* projects */
+
+  .project, .vid-info, .intro-box {
+    padding: 15px;
+  }
+
+  .project-title {
+    font-size: 20px;
+  }
   
 }
