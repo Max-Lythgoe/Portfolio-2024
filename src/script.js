@@ -138,6 +138,6 @@ class VideoWithBackground {
   };
 }
 
-const videoIds = ["js-video-1", "js-video-2"];
-const canvasIds = ["js-canvas-1", "js-canvas-2"];
+const videoIds = ["js-video-1", "js-video-2", "js-video-3", "js-video-4"];
+const canvasIds = ["js-canvas-1", "js-canvas-2", "js-canvas-3", "js-canvas-4"];
 const el = new VideoWithBackground(videoIds, canvasIds);
