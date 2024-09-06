@@ -29,6 +29,10 @@
 }
 
 
+body::-webkit-scrollbar       {background-color:#18191d;width:16px}
+body::-webkit-scrollbar-track {background-color: #18191d}
+body::-webkit-scrollbar-thumb {background-color: #18191d;border-radius:16px; border: 2px solid #7b7c7e}
+
 
 p, li, span {
   color: #fff;
@@ -508,6 +512,7 @@ body:hover .bg-wrap::before {
 
 .skills {
   display: flex;
+  align-items: center;
   overflow-x: auto;
   gap: 20px;
   mask-image: linear-gradient(90deg, #000 60%, transparent);
@@ -583,7 +588,7 @@ body:hover .bg-wrap::before {
 
 .skill-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
@@ -863,6 +868,10 @@ body:hover .bg-wrap::before {
 
   .project-box {
     padding: 0em 0px;
+  }
+
+  .project-link {
+    font-size: 20px;
   }
 
   /* skills */
