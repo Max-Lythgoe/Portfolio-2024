@@ -91,6 +91,34 @@ gsap.utils.toArray('.project').forEach(project => {
   );
 });
 
+gsap.utils.toArray('.canvas').forEach(canvas => {
+  gsap.fromTo(canvas, 
+    { opacity: 0.3 }, 
+    { 
+      opacity: .7,
+      scrollTrigger: {
+        trigger: canvas,
+        start: "top 100%",
+        end: "top 10%",
+        scrub: true
+      }
+    }
+  );
+
+  gsap.fromTo(canvas, 
+    { opacity: .7 }, 
+    { 
+      opacity: 0.3,
+      scrollTrigger: {
+        trigger: canvas,
+        start: "top 0%",
+        end: "top -60%",
+        scrub: true
+      }
+    }
+  );
+});
+
 document.querySelectorAll('.nav-link, .header-logo').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
