@@ -28,6 +28,8 @@
   box-sizing: border-box;
 }
 
+
+
 p, li, span {
   color: #fff;
   font-family: var(--body-font);
