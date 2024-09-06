@@ -11,20 +11,20 @@ if (window.innerWidth > 768) {
 }
 
 
-// menu
 
+// Menu
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menu-toggle");
   const header = document.querySelector(".header-mobile");
   const navLinks = document.querySelectorAll(".header-mobile a");
 
-  // Menu toggle click event
-  menuToggle.addEventListener("click", () => {
+  const toggleMenu = () => {
     menuToggle.classList.toggle("menu-open");
     header.classList.toggle("menu-open");
-  });
+  };
 
-  // Close menu on link click
+  menuToggle.addEventListener("click", toggleMenu);
+
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
       header.classList.remove("menu-open");
@@ -32,42 +32,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Check window size and toggle menu visibility
   const checkWindowSize = () => {
-    if (window.innerWidth <= 768) {
-      menuToggle.classList.add("active");
-    } else {
-      menuToggle.classList.remove("active");
-    }
+    menuToggle.classList.toggle("active", window.innerWidth <= 768);
   };
 
-  // Initial check and event listeners
   checkWindowSize();
   window.addEventListener("resize", checkWindowSize);
 
-  // Scroll event for menu toggle
   window.addEventListener("scroll", () => {
     if (window.innerWidth > 768) {
-      if (window.scrollY > 200) {
-        menuToggle.classList.add("active");
-      } else {
-        menuToggle.classList.remove("active");
-      }
+      menuToggle.classList.toggle("active", window.scrollY > 200);
     }
   });
 });
 
-
-
-
-
-
-// pac man mode
-// document.getElementById("pac-man").addEventListener("click", function(){
-//   document.body.classList.toggle("pac-man-mode");
-// });
-
-// video blur overlay
+// Video blur overlay
 class VideoWithBackground {
   constructor(videoIds, canvasIds) {
     this.videos = videoIds.map(id => document.getElementById(id));
@@ -79,26 +58,26 @@ class VideoWithBackground {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (!mediaQuery.matches) {
-      window.addEventListener("load", this.init, false);
-      window.addEventListener("unload", this.cleanup, false);
+      window.addEventListener("load", this.init.bind(this), false);
+      window.addEventListener("pagehide", this.cleanup.bind(this), false);
     }
   }
 
-  draw = (index) => {
+  draw(index) {
     this.ctxs[index].drawImage(this.videos[index], 0, 0, this.canvases[index].width, this.canvases[index].height);
-  };
+  }
 
-  drawLoop = (index) => {
+  drawLoop(index) {
     this.draw(index);
     this.steps[index] = window.requestAnimationFrame(() => this.drawLoop(index));
-  };
+  }
 
-  drawPause = (index) => {
+  drawPause(index) {
     window.cancelAnimationFrame(this.steps[index]);
     this.steps[index] = undefined;
-  };
+  }
 
-  drawPoster = (index) => {
+  drawPoster(index) {
     if (this.posterImages[index].complete) {
       this.ctxs[index].drawImage(this.posterImages[index], 0, 0, this.canvases[index].width, this.canvases[index].height);
     } else {
@@ -106,9 +85,9 @@ class VideoWithBackground {
         this.ctxs[index].drawImage(this.posterImages[index], 0, 0, this.canvases[index].width, this.canvases[index].height);
       };
     }
-  };
+  }
 
-  init = () => {
+  init() {
     this.videos.forEach((video, index) => {
       this.ctxs[index] = this.canvases[index].getContext("2d");
       this.ctxs[index].filter = "blur(1px)";
@@ -125,9 +104,9 @@ class VideoWithBackground {
 
       this.drawPoster(index);
     });
-  };
+  }
 
-  cleanup = () => {
+  cleanup() {
     this.videos.forEach((video, index) => {
       video.removeEventListener("loadeddata", () => this.draw(index));
       video.removeEventListener("seeked", () => this.draw(index));
@@ -135,7 +114,7 @@ class VideoWithBackground {
       video.removeEventListener("pause", () => this.drawPause(index));
       video.removeEventListener("ended", () => this.drawPause(index));
     });
-  };
+  }
 }
 
 const videoIds = ["js-video-1", "js-video-2", "js-video-3", "js-video-4"];
