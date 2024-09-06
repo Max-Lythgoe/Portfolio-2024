@@ -100,7 +100,7 @@ body {
   right: 0;
   bottom: 0;
   z-index: 1;
-  background-image: url(/assets/svg/tile-bg.svg);
+  background-image: url(./assets/svg/tile-bg.svg);
   background-position: 50% 0;
   background-size: 142px 71px;
    /* background-size: 71px 35.5px;  smaller bg grid */ 
