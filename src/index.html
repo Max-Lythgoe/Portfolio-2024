@@ -15,7 +15,11 @@
 
 
   <!-- font awesome  -->
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+  <script type='text/javascript'>
+    //<![CDATA[ 
+    function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("script")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }loadCSS("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+    //]]> 
+    </Script>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -309,12 +313,42 @@
 
 
  
+  <script>
+    function loadGSAP() {
+      // Load GSAP
+      var script1 = document.createElement('script');
+      script1.src = './external-js/gsap.min.js';
+      document.head.appendChild(script1);
+  
+      // Load ScrollTrigger
+      var script2 = document.createElement('script');
+      script2.src = './external-js/ScrollTrigger.min.js';
+      document.head.appendChild(script2);
+  
+      // Load scroll.js
+      var script3 = document.createElement('script');
+      script3.src = './scroll.js';
+      document.head.appendChild(script3);
+    }
+  
+    document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('click', loadGSAP, { once: true });
+      document.addEventListener('scroll', loadGSAP, { once: true });
+      document.addEventListener('mousemove', loadGSAP, { once: true });
+      document.addEventListener('touchstart', loadGSAP, { once: true });
+    });
+  </script>
+  
 
+
+  <!-- <script src="./external-js/gsap.min.js"></script>
+  <script src="./external-js/ScrollTrigger.min.js"></script>
+  <script src="./scroll.js"></script> -->
 
   <script src='./external-js/lenis.min.js'></script>
-  <script src="./external-js/gsap.min.js"></script>
-  <script src="./external-js/ScrollTrigger.min.js"></script>
   <script src="./script.js"></script>
-  <script src="./scroll.js"></script>
+
+
+  
 </body>
 </html>
