@@ -280,12 +280,10 @@
       </div>
     </div>
   </div>
+  
 
-
-
- 
   <script>
-    function loadGSAP() {
+    function loadScripts() {
       // Load GSAP
       var script1 = document.createElement('script');
       script1.src = './external-js/gsap.min.js';
@@ -296,17 +294,22 @@
       script2.src = './external-js/ScrollTrigger.min.js';
       document.head.appendChild(script2);
   
-      // Load scroll.js
+      // Load Lenis
       var script3 = document.createElement('script');
-      script3.src = './scroll.js';
+      script3.src = './external-js/lenis.min.js';
       document.head.appendChild(script3);
+  
+      // Load custom scroll script
+      var script4 = document.createElement('script');
+      script4.src = './scroll.js';
+      document.head.appendChild(script4);
     }
   
     document.addEventListener('DOMContentLoaded', function() {
-      document.addEventListener('click', loadGSAP, { once: true });
-      document.addEventListener('scroll', loadGSAP, { once: true });
-      document.addEventListener('mousemove', loadGSAP, { once: true });
-      document.addEventListener('touchstart', loadGSAP, { once: true });
+      document.addEventListener('click', loadScripts, { once: true });
+      document.addEventListener('scroll', loadScripts, { once: true });
+      document.addEventListener('mousemove', loadScripts, { once: true });
+      document.addEventListener('touchstart', loadScripts, { once: true });
     });
   </script>
   
@@ -314,9 +317,8 @@
 
   <!-- <script src="./external-js/gsap.min.js"></script>
   <script src="./external-js/ScrollTrigger.min.js"></script>
-  <script src="./scroll.js"></script> -->
-
   <script src='./external-js/lenis.min.js'></script>
+  <script src="./scroll.js"></script> -->
   <script src="./script.js"></script>
 
 
